@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.location"
-        minSdk = 24
+        minSdk = 29
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -50,8 +50,12 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation("com.google.accompanist:accompanist-permissions:0.37.3")
+    implementation("androidx.compose.runtime:runtime-livedata:1.9.5")
     implementation(libs.androidx.navigation.compose)
     implementation(libs.rendering)
+    implementation(libs.play.services.location)
+    implementation(libs.androidx.compose.remote.creation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

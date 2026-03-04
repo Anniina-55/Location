@@ -3,9 +3,10 @@ package com.example.location.navigation
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -13,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.location.ui.components.TopAppBar
 import com.example.location.ui.screens.HomeScreen
 import com.example.location.ui.screens.LocationScreen
+import com.example.location.viewmodel.LocationViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -23,8 +25,8 @@ fun AppNavigation() {
     val currentRoute = currentBackEntry.value?.destination?.route
 
     val routeTitles = mapOf(
-        "home" to "Home",
-        "location" to "Location"
+        "home" to "Home view",
+        "location" to "Location view"
     )
     val currentTitle = routeTitles[currentRoute] ?: "App"
 
@@ -45,7 +47,11 @@ fun AppNavigation() {
             Modifier.padding(innerPadding)
         ) {
             composable("home") { HomeScreen(navController) }
-            composable("location") { LocationScreen(navController) }
+            composable("location") {
+                val context = LocalContext.current
+                val viewModel = remember { LocationViewModel(context) }
+                LocationScreen(navController, viewModel)
+            }
         }
     }
 }

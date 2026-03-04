@@ -25,7 +25,7 @@ fun HomeScreen(navController: NavController) {
     ) {
         Greeting(
             name = "User",
-            modifier = Modifier.padding(24.dp),
+            modifier = Modifier.padding(28.dp),
         )
         Button(
             modifier = Modifier.padding(16.dp),
